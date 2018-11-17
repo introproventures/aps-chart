@@ -1,0 +1,39 @@
+  # Default values for aps.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+reviewWorkflows:
+  enabled: false
+
+image:
+  repository: alfresco/process-services
+  tag: 1.9.0.1
+  pullPolicy: IfNotPresent
+
+initEnv:
+  WAIT_HOSTS: "{{ .Release.Name }}-postgresql:15672"
+
+service:
+  type: ClusterIP
+  port: 80
+  annotations:
+    fabric8.io/expose: "true"
+    fabric8.io/ingress.path: /activiti-app
+
+resources: {}
+
+ingress:
+    enabled: false
+    path: /activiti-app
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+postgresql:
+  name: postgres
+
