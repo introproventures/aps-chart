@@ -9,7 +9,7 @@ Pre-requisites:
 * Nginx
 
 
-Instructions:
+## Instructions:
 
 1. Create activiti.lic Kubernetes secret from activiti.lic file. Run something like `kubectl create secret generic activiti.lic --from-file=./activiti.lic` in the namespace where you want to install APS.
 
@@ -25,12 +25,12 @@ Instructions:
 
 7. Default Login/Password: `admin@app.activiti.com`/`admin`
 
-Notes:
+## Notes:
 
 The Aps chart template will auto-generate postgresql password in `aps-postgresql` Kubernetes secret that will be injected at runtime into deployments. 
 
 You may specify your own Postgresql password using `postgresPassword` value for aps-postgresql secret using helm install command line options.
 
-License:
+## License:
 
 Apache Software License 2.0
