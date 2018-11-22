@@ -23,9 +23,11 @@ pipeline {
         steps {
           container("maven") {
             dir("preview") {
+              // Let's build preview chart
               sh "make preview"
 
-              sh "jx preview"
+              // Let create preview environment
+              sh "jx preview --app $APP_NAME"
             }
           }
         }
