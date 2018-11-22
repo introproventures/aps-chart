@@ -12,7 +12,7 @@ activiti-app:
     tag: 1.9.0.1
     pullPolicy: IfNotPresent
   ingress:
-    enabled: true
+    enabled: false
     hosts:       
     - aps.127.0.0.1.nip.io
     annotations:
