@@ -1,6 +1,6 @@
 # aps-chart
 
-Alfresco Process Services (APS) v1.9 Kubernetes Helm Chart with Postgresql Database 
+Alfresco Process Services (powered by Activiti) (APS) v1.9 Kubernetes Helm Chart with Postgresql Database 
 
 Pre-requisites:
 
@@ -27,7 +27,7 @@ Pre-requisites:
 
 ## Notes:
 
-The Aps chart template will auto-generate postgresql password in `aps-postgresql` Kubernetes secret that will be injected at runtime into deployments. 
+The APS chart template will auto-generate postgresql password in `aps-postgresql` Kubernetes secret that will be injected at runtime into deployments. 
 
 You may specify your own Postgresql password using `postgresPassword` value for aps-postgresql secret using helm install command line options.
 
