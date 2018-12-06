@@ -3,7 +3,16 @@ entries:
   aps:
   - apiVersion: v1
     appVersion: 1.9.1
-    created: 2018-12-06T22:17:32.231915156Z
+    created: 2018-12-06T22:30:46.38578714Z
+    description: Alfresco Process Services Helm chart for Kubernetes
+    digest: 40ac7bf312870c322215a52aba7cdcf28ac9ea0dd313a10d3de8f4526e5a84ac
+    name: aps
+    urls:
+    - aps-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v1
+    appVersion: 1.9.1
+    created: 2018-12-06T22:30:46.384527931Z
     description: Alfresco Process Services Helm chart for Kubernetes
     digest: a76a0db1a629deb702adb48f4358341bea4f0ccf9d02cab300cac6d9ea7ffd84
     name: aps
@@ -12,11 +21,11 @@ entries:
     version: 1.0.1
   - apiVersion: v1
     appVersion: 1.9.1
-    created: 2018-12-06T22:17:32.230777241Z
+    created: 2018-12-06T22:30:46.382793324Z
     description: Alfresco Process Services Helm chart for Kubernetes
     digest: 4634f514932e9597b0a151dda2faf97e34d7ef75f0ac65f73682c14527aeaa40
     name: aps
     urls:
     - aps-1.0.0.tgz
     version: 1.0.0
-generated: 2018-12-06T22:17:32.229538231Z
+generated: 2018-12-06T22:30:46.381204149Z
