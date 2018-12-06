@@ -71,7 +71,7 @@ pipeline {
         environment {
           GITHUB_REPO_NAME = "aps-chart"
           GITHUB_CHARTS_REPO    = "https://github.com/${ORG}/${GITHUB_REPO_NAME}.git"
-          PROMOTE_HELM_REPO_URL = "https://${ORG}.github.io/${GITHUB_REPO_NAME}
+          PROMOTE_HELM_REPO_URL = "https://${ORG}.github.io/${GITHUB_REPO_NAME}"
         }
         steps {
           container("maven") {
