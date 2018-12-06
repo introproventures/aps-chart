@@ -39,7 +39,7 @@ git-rev-list:
 
 init:
 	helm init --client-only 
-	helm repo add chart-repo $(CHART_REPOSITORY)
+	# helm repo add chart-repo $(CHART_REPOSITORY)
 
 clean:
 	rm VERSION | true
