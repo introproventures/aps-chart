@@ -38,15 +38,14 @@ git-rev-list:
 	git rev-list $(PREVIOUS_REV)..$(REV) --first-parent --pretty
 
 init:
-	helm init --client-only
-	helm repo add chart-repo $(CHART_REPOSITORY)
+	helm init --client-only | helm repo add chart-repo $(CHART_REPOSITORY)
 
 clean:
 	rm VERSION | true
 	rm -rf charts/*.tgz
 	rm -rf ${NAME}*.tgz
 
-build: clean
+build: init
 	helm dependency build
 	helm lint
 
