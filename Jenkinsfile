@@ -69,8 +69,9 @@ pipeline {
           branch "$RELEASE_BRANCH"
         }
         environment {
-          GITHUB_CHARTS_REPO    = "https://github.com/${ORG}/${APP_NAME}.git"
-          PROMOTE_HELM_REPO_URL = "https://${ORG}.github.io/${APP_NAME}"
+          GITHUB_REPO_NAME = "aps-chart"
+          GITHUB_CHARTS_REPO    = "https://github.com/${ORG}/${GITHUB_REPO_NAME}.git"
+          PROMOTE_HELM_REPO_URL = "https://${ORG}.github.io/${GITHUB_REPO_NAME}
         }
         steps {
           container("maven") {
