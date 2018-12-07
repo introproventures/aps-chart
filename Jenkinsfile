@@ -7,7 +7,7 @@ pipeline {
 	        // Inherit from Jx Maven pod template
 	        inheritFrom "maven"
 	        // Add scheduling configuration to Jenkins builder pod template
-	        yamlFile "gke-preemtible.yaml"
+	        yamlFile "gke-preemptible.yaml"
 	    }
   }    
     environment {
