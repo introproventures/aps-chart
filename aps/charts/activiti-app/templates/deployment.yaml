@@ -37,7 +37,7 @@ spec:
           - name: DATASOURCE_DRIVER
             value: org.postgresql.Driver 
           - name: DATASOURCE_URL
-            value: jdbc:postgresql://{{ .Release.Name }}-postgresql:5432/{{ .Values.postgresql.name }}
+            value: jdbc:postgresql://{{ .Release.Name }}-apspostgresql:5432/{{ .Values.postgresql.name }}
           - name: DATASOURCE_PASSWORD
             valueFrom:
               secretKeyRef:
