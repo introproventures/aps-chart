@@ -1,9 +1,15 @@
 pipeline {
 	
-    agent {
-        label "jenkins-maven"
-    }
-    
+  agent {
+	    kubernetes {
+	        // Change the name of jenkins-maven label to be able to use yaml configuration snippet
+	        label "maven-gke-preemtible"
+	        // Inherit from Jx Maven pod template
+	        inheritFrom "maven"
+	        // Add scheduling configuration to Jenkins builder pod template
+	        yamlFile "gke-preemtible.yaml"
+	    }
+  }    
     environment {
       RELEASE_BRANCH        = "master"
       ORG                   = "introproventures"
