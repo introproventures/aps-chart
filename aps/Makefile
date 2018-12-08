@@ -39,7 +39,7 @@ git-rev-list:
 
 init:
 	helm init --client-only 
-	# helm repo add chart-repo $(CHART_REPOSITORY)
+	helm repo add chart-repo $(CHART_REPOSITORY) | true
 
 clean:
 	rm VERSION | true
@@ -47,6 +47,7 @@ clean:
 	rm -rf ${NAME}*.tgz
 
 build: init
+	rm *.lock | true
 	helm dependency build
 	helm lint
 
