@@ -21,6 +21,7 @@ service:
   annotations:
     fabric8.io/expose: "true"
     fabric8.io/ingress.path: /activiti-app
+    fabric8.io/ingress.name: aps
 
 resources: {}
 
