@@ -1,5 +1,5 @@
 dependencies:
 - name: postgresql
-  alias: apspostgresql
+  alias: aps-postgresql
   repository: https://kubernetes-charts.storage.googleapis.com
   version: 0.18.0

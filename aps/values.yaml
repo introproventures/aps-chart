@@ -13,12 +13,13 @@ activiti-app:
     pullPolicy: IfNotPresent
   ingress:
     enabled: false
+    path: /activiti-app
     hosts:       
     - aps.127.0.0.1.nip.io
     annotations:
       kubernetes.io/ingress.class: nginx
 
-apspostgresql:
+aps-postgresql:
   enabled: true
   name: postgres
   pullPolicy: IfNotPresent
