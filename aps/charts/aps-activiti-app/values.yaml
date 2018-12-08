@@ -13,7 +13,7 @@ image:
   pullPolicy: IfNotPresent
 
 initEnv:
-  WAIT_HOSTS: "{{ .Release.Name }}-postgresql:15672"
+  WAIT_HOSTS: "{{ .Release.Name }}-{{ .Values.postgresql.host }}:{{ .Values.postgresql.port }}"
 
 service:
   type: ClusterIP
@@ -36,4 +36,6 @@ affinity: {}
 
 postgresql:
   name: postgres
+  host: aps-postgresql
+  port: 5432
 

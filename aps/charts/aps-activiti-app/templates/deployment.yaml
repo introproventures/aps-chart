@@ -23,6 +23,13 @@ spec:
       - name: license-volume
         secret:
           secretName: activiti.lic
+    {{- if .Values.initEnv.WAIT_HOSTS }}
+      initContainers:
+        - name: init-container
+          image: introproventures/emailbpm-docker-wait-for-it:0.0.1
+          command: ['/usr/local/bin/bash', '-c', '/wait-for-it.sh {{ tpl .Values.initEnv.WAIT_HOSTS . }}']
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+   {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -37,7 +44,7 @@ spec:
           - name: DATASOURCE_DRIVER
             value: org.postgresql.Driver 
           - name: DATASOURCE_URL
-            value: jdbc:postgresql://{{ .Release.Name }}-apspostgresql:5432/{{ .Values.postgresql.name }}
+            value: jdbc:postgresql://{{ .Release.Name }}-{{ .Values.postgresql.host }}:{{ .Values.postgresql.port }}/{{ .Values.postgresql.name }}
           - name: DATASOURCE_PASSWORD
             valueFrom:
               secretKeyRef:
