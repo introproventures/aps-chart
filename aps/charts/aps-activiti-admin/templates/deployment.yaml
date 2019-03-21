@@ -1,0 +1,80 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ include "aps.fullname" . }}
+  labels:
+    app: {{ include "aps.name" . }}
+    chart: {{ include "aps.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "aps.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "aps.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+    {{- if .Values.initEnv.WAIT_HOSTS }}
+      initContainers:
+        - name: init-container
+          image: introproventures/emailbpm-docker-wait-for-it:0.0.1
+          command: ['/usr/local/bin/bash', '-c', '/wait-for-it.sh {{ tpl .Values.initEnv.WAIT_HOSTS . }}']
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+   {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: REST_APP_HOST
+            value: {{ .Values.rest.app.host | quote }}
+          - name: REST_APP_PORT
+            value: {{ .Values.rest.app.port | quote }}
+          - name: REST_APP_USERNAME
+            value: {{ .Values.rest.app.user | quote }}
+          - name: REST_APP_PASSWORD
+            value: {{ .Values.rest.app.password | quote }}
+          - name: DATASOURCE_USERNAME
+            value: {{ .Values.datasource.username | quote }}
+          - name: DATASOURCE_DRIVER
+            value: {{ .Values.datasource.driver | quote }}
+          - name: DATASOURCE_URL
+            value: {{ .Values.datasource.url | quote }}
+          - name: DATASOURCE_PASSWORD
+            value: {{ .Values.datasource.password | quote }}
+          - name: HIBERNATE_DIALECT
+            value: {{ .Values.hibernate.dialect | quote }}
+          {{- if .Values.extraEnv }}
+{{ toYaml .Values.extraEnv | indent 10 }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

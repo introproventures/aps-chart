@@ -12,8 +12,27 @@ aps-activiti-app:
     tag: 1.9.0.1
     pullPolicy: IfNotPresent
   ingress:
-    enabled: false
+    enabled: true
     path: /activiti-app
+    hosts:       
+    - aps.127.0.0.1.nip.io
+    annotations:
+      kubernetes.io/ingress.class: nginx
+
+aps-activiti-admin:
+  image:  
+    repository: alfresco/process-services-admin
+    tag: 1.9.0.1
+    pullPolicy: IfNotPresent
+  rest:
+    app:
+      host: http://aps.127.0.0.1.nip.io
+      port: 80
+      user: admin@app.activiti.com
+      password: admin
+  ingress:
+    enabled: true
+    path: /activiti-admin
     hosts:       
     - aps.127.0.0.1.nip.io
     annotations:

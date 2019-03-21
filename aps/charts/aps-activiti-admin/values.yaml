@@ -1,0 +1,55 @@
+  # Default values for aps.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: alfresco/process-services-admin
+  tag: 1.9.0.1
+  pullPolicy: IfNotPresent
+
+rest:
+  app:
+    host: http://localhost
+    port: 8080
+    user: admin@app.activiti.com
+    password: admin
+
+datasource:    
+  url: jdbc:h2:mem:db1;DB_CLOSE_DELAY=1000
+  driver: org.h2.Driver
+  username: alfresco
+  password: alfresco
+
+hibernate:
+  dialect: org.hibernate.dialect.H2Dialect
+
+initEnv:
+   WAIT_HOSTS: # "{{ .Release.Name }}-{{ .Values.postgresql.host }}:{{ .Values.postgresql.port }}"
+
+service:
+  type: ClusterIP
+  port: 80
+  annotations:
+    fabric8.io/expose: "false"
+    fabric8.io/ingress.path: /activiti-admin
+    fabric8.io/ingress.name: aps
+
+resources: {}
+
+ingress:
+    enabled: false
+    path: /activiti-admin
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+postgresql:
+  name: postgres
+  host: aps-postgresql
+  port: 5432
+
